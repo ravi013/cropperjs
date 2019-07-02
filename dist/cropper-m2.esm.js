@@ -1,14 +1,12 @@
 /*!
- * Cropper.js v1.5.2
+ * CropperM2.js v1.5.2
  * https://fengyuanchen.github.io/cropperjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2019-06-30T06:01:05.296Z
+ * Date: 2019-07-02T10:32:04.623Z
  */
-
-'use strict';
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -69,7 +67,15 @@ function _nonIterableSpread() {
 var IS_BROWSER = typeof window !== 'undefined';
 var WINDOW = IS_BROWSER ? window : {};
 var IS_TOUCH_DEVICE = IS_BROWSER ? 'ontouchstart' in WINDOW.document.documentElement : false;
-var HAS_POINTER_EVENT = IS_BROWSER ? 'PointerEvent' in WINDOW : false;
+var hasPointerEvent = false;
+
+if (IS_TOUCH_DEVICE) {
+  hasPointerEvent = false;
+} else if (IS_BROWSER) {
+  hasPointerEvent = IS_BROWSER ? 'PointerEvent' in WINDOW : false;
+}
+
+var HAS_POINTER_EVENT = hasPointerEvent;
 var NAMESPACE = 'cropper'; // Actions
 
 var ACTION_ALL = 'all';
@@ -3540,4 +3546,4 @@ function () {
 
 assign(Cropper.prototype, render, preview, events, handlers, change, methods);
 
-module.exports = Cropper;
+export default Cropper;
